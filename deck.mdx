@@ -1,0 +1,87 @@
+import { Head, Code, Appear, components as Components } from 'mdx-deck'
+import { FullscreenCode, Split, SplitRight } from 'mdx-deck/layouts'
+import ImageWithLabel from './components/image-with-label'
+
+export { default as theme } from './theme'
+
+<Head>
+  <title>JavaScript dla dzidziusów</title>
+</Head>
+
+# JavaScript dla dzidziusów vol.4
+
+
+<ImageWithLabel>
+  <img height="400" src="./static/at-finish.jpg"/>
+</ImageWithLabel>
+Author: Artem Ovcharenko
+
+---
+# Global and Local Variables
+---
+```js
+    var highFive = 5;
+    var myBestFunc = () => { /*does smth*/ };
+```
+---
+```js
+    window.highFive = 5;
+    window.myBestFunc = () => { /*does smth*/ };
+```
+---
+```js
+    const highFive = 5;
+    window.highFive // undefined;
+```
+---
+```js
+// first phase:
+// window = { f: function, a: undefined, g: undefined }
+
+var a = 5;
+// window = { f: function, a: 5, g: undefined }
+
+function f(arg) { /*...*/ }
+// window = { f: function, a: 5, g: undefined } no changes here because FD hoists
+
+var g = function(arg) { /*...*/ };
+// window = { f: function, a: 5, g: function }
+---
+## LexicalEnvironment
+---
+```js
+function sayHi(name) {
+  // LexicalEnvironment = { name: 'Jarek', phrase: undefined }
+  var phrase = `Dzien Dobry, ${name}`;
+
+  // LexicalEnvironment = { name: 'Jarek', phrase: 'Dzien Dobry, Jarek'}
+  alert( phrase );
+}
+
+sayHi('Jarek');
+```
+---
+```js
+const name = 'Mateusz';
+function sayHi() {
+  // LexicalEnvironment = { phrase: undefined }
+  var phrase = `Dzien Dobry, ${name}`;
+
+  // LexicalEnvironment = { phrase: 'Dzien Dobry, Mateusz'}
+  alert( phrase );
+}
+
+sayHi();
+```
+---
+<ImageWithLabel>
+  <img src="./static/go-deeper.png" />
+</ImageWithLabel>
+---
+
+
+## Questions
+
+---
+
+### Thank you for your participation.
