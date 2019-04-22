@@ -78,8 +78,54 @@ sayHi();
   <img src="./static/go-deeper.png" />
 </ImageWithLabel>
 ---
+```js
+function sayHiBye(firstName, lastName) { // first [[Scope]]
+  // first LE
+  alert( `Dzien Dobry ${getFullName()}`);
+  alert( `Do widzenia ${getFullName()}`);
 
+  function getFullName() {  second first [[Scope]]
+    // second LE
+    return`${firstName} ${lastName}`;
+  }
 
+}
+
+sayHiBye("Marek", "Jazur");
+
+// second LE -> second [[Scope]](first LE) -> first [[scope]];
+
+```
+---
+```js
+function createCounter() {
+  // LexicalEnvironment = { currentCount: undefined }
+
+  var currentCount = 0;
+
+  // LexicalEnvironment = { currentCount: 1 }
+
+  return function() { // [[Scope]] -> LexicalEnvironment
+    return currentCount++;
+  };
+}
+
+var counter = createCounter();
+
+counter;
+
+function() { // [[Scope]] -> {currentCount: 0}
+  return currentCount++;
+};
+
+```
+---
+```js
+counter(); // 1, [[Scope]] -> {currentCount: 1}
+counter(); // 2, [[Scope]] -> {currentCount: 2}
+counter(); // 3, [[Scope]] -> {currentCount: 3}
+```
+---
 ## Questions
 
 ---
