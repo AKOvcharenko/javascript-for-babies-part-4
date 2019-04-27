@@ -126,6 +126,84 @@ counter(); // 2, [[Scope]] -> {currentCount: 2}
 counter(); // 3, [[Scope]] -> {currentCount: 3}
 ```
 ---
+```js
+ new Function()
+```
+---
+```js
+function myBestFunc() {}
+
+myBestFunc.five = 5;
+myBestFunc.test === 5; //true
+```
+---
+```js
+function createCounter() {
+  function counter() {
+    return counter.currentCount++;
+  };
+  counter.currentCount = 1;
+
+  return counter;
+}
+
+var counter = createCounter();
+```
+---
+```js
+counter(); // 1
+
+counter.currentCount = 5;
+
+counter(); // 5
+```
+---
+export default Split
+
+<div>
+  <Components.h2>
+    What is <Components.inlineCode>this</Components.inlineCode>?
+  </Components.h2>
+  <Components.p>The JavaScript <Components.inlineCode>this</Components.inlineCode> keyword(in most cases) refers to the object, and value determined by how a function is called.</Components.p>
+  <br />
+  <Components.ol>
+    <Components.li>
+      In a method, <Components.inlineCode>this</Components.inlineCode> refers to the owner object.
+    </Components.li>
+    <Components.li>
+      In a function, <Components.inlineCode>this</Components.inlineCode> refers to window.
+    </Components.li>
+    <Components.li>
+     In a function, in strict mode, <Components.inlineCode>this</Components.inlineCode> is undefined.
+    </Components.li>
+    <Components.li>
+      In a constructor <Components.inlineCode>this</Components.inlineCode> refers to created instance.
+    </Components.li>
+    <Components.li>
+     In an event, <Components.inlineCode>this</Components.inlineCode> refers to the element that received the event.
+    </Components.li>
+    <Components.li>
+      Methods like call(), and apply() can refer <Components.inlineCode>this</Components.inlineCode> to any object.
+    </Components.li>
+  </Components.ol>
+</div>
+
+```js
+    1. obj.method(); //this -> obj;
+
+    2. myBestFunc(); //this -> window;
+
+    3.
+       'use strict'
+       myBestFunc(); //this -> undefined;
+
+    4. new User; //this -> User instance;
+
+    5. document.querySelector('textarea').onBlur(myBestFunc);
+       //this -> blured textarea;
+
+    6. obj.method.call(anotherObj); //this -> anotherObj;
+---
 ## Questions
 
 ---
