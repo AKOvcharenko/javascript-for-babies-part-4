@@ -204,6 +204,116 @@ export default Split
 
     6. obj.method.call(anotherObj); //this -> anotherObj;
 ---
+```
+function showFullName() {
+  return `${this.firstName} ${this.lastName}`;
+}
+
+window.firstName = 'Jarek';
+window.lastName = 'Mazur';
+
+var user = {
+  firstName: 'Marek',
+  lastName: 'Jazur',
+};
+
+showFullName() // 'Jarek Mazur';
+showFullName.call(user) // 'Marek Jazur';
+```
+---
+```
+showFullName.call(user)  // 'Marek Jazur';
+showFullName.apply(user) // 'Marek Jazur';
+```
+---
+```
+function showFullName(phrase) {
+  return `${phrase} ${this.firstName} ${this.lastName}`;
+}
+
+var user = {
+  firstName: 'Marek',
+  lastName: 'Jazur',
+}
+
+showFullName.call(user, 'Pizzy nie ma, ')  // 'Pizzy nie ma, Marek Jazur';
+showFullName.apply(user, ['Pizzy nie ma, ']) // 'Marek Jazur';
+```
+---
+```
+function showFullName(phrase) {
+  return `${phrase} ${this.firstName} ${this.lastName}`;
+}
+
+var user = {
+  firstName: 'Marek',
+  lastName: 'Jazur',
+}
+
+var getMarek = showFullName.bind(user); // function with this -> user;
+
+getMarek('Pizzy nie ma, ')  // 'Pizzy nie ma, Marek Jazur';
+```
+---
+```
+function showFullName(phrase) {
+  return `${phrase} ${this.firstName} ${this.lastName}`;
+}
+
+var user = {
+  firstName: 'Marek',
+  lastName: 'Jazur',
+}
+
+var getMarek = showFullName.bind(user); // function with this -> user;
+
+getMarek('Pizzy nie ma, ')  // 'Pizzy nie ma, Marek Jazur';
+```
+---
+```
+function showFullName(phrase) {
+  return `${phrase} ${this.firstName} ${this.lastName}`;
+}
+
+var user = {
+  firstName: 'Marek',
+  lastName: 'Jazur',
+}
+
+var getMarek = showFullName.bind(user, 'Pizza jest, '); // function with this -> user, and defined first argument;
+
+getMarek('Pizzy nie ma, ')  // 'Pizza jest, Marek Jazur';
+```
+---
+function login() {
+  // magic is here;
+  // dziki this!;
+}
+
+function isAdmin() {
+  if (someMagic) return true;
+  return false;
+}
+---
+function login() {
+  // magic is here;
+  // dziki this!;
+}
+
+function isAdmin() {
+  if (someMagic) return true;
+  return false;
+}
+
+function updatedLogin() {
+  if(isAdmin()) {
+    return login.apply(dzikiThis, arguments);
+  }
+
+  return false;
+}
+
+---
 ## Questions
 
 ---
