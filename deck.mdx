@@ -47,7 +47,7 @@ function f(arg) { /*...*/ }
 var g = function(arg) { /*...*/ };
 // window = { f: function, a: 5, g: function }
 ---
-## LexicalEnvironment
+## Lexical Environment
 ---
 ```js
 function sayHi(name) {
@@ -126,15 +126,13 @@ counter(); // 2, [[Scope]] -> {currentCount: 2}
 counter(); // 3, [[Scope]] -> {currentCount: 3}
 ```
 ---
-```js
- new Function()
-```
+ new Function();
 ---
 ```js
 function myBestFunc() {}
 
 myBestFunc.five = 5;
-myBestFunc.test === 5; //true
+myBestFunc.five === 5; //true
 ```
 ---
 ```js
@@ -222,8 +220,8 @@ showFullName.call(user) // 'Marek Jazur';
 ```
 ---
 ```
-showFullName.call(user)  // 'Marek Jazur';
-showFullName.apply(user) // 'Marek Jazur';
+showFullName.call(user);  // 'Marek Jazur';
+showFullName.apply(user); // 'Marek Jazur';
 ```
 ---
 ```
@@ -234,10 +232,10 @@ function showFullName(phrase) {
 var user = {
   firstName: 'Marek',
   lastName: 'Jazur',
-}
+};
 
-showFullName.call(user, 'Pizzy nie ma, ')  // 'Pizzy nie ma, Marek Jazur';
-showFullName.apply(user, ['Pizzy nie ma, ']) // 'Marek Jazur';
+showFullName.call(user, 'Pizzy nie ma, ');    // 'Pizzy nie ma, Marek Jazur';
+showFullName.apply(user, ['Pizzy nie ma, ']); // 'Pizzy nie ma, Marek Jazur';
 ```
 ---
 ```
@@ -248,11 +246,11 @@ function showFullName(phrase) {
 var user = {
   firstName: 'Marek',
   lastName: 'Jazur',
-}
+};
 
-var getMarek = showFullName.bind(user); // function with this -> user;
+var sayToMarek = showFullName.bind(user); // function with this -> user;
 
-getMarek('Pizzy nie ma, ')  // 'Pizzy nie ma, Marek Jazur';
+sayToMarek('Pizzy nie ma, ') ; // 'Pizzy nie ma, Marek Jazur';
 ```
 ---
 ```
@@ -263,11 +261,11 @@ function showFullName(phrase) {
 var user = {
   firstName: 'Marek',
   lastName: 'Jazur',
-}
+};
 
-var getMarek = showFullName.bind(user); // function with this -> user;
+var sayToMarek = showFullName.bind(user); // function with this -> user;
 
-getMarek('Pizzy nie ma, ')  // 'Pizzy nie ma, Marek Jazur';
+sayToMarek('Pizzy nie ma, ');  // 'Pizzy nie ma, Marek Jazur';
 ```
 ---
 ```
@@ -278,13 +276,14 @@ function showFullName(phrase) {
 var user = {
   firstName: 'Marek',
   lastName: 'Jazur',
-}
+};
 
-var getMarek = showFullName.bind(user, 'Pizza jest, '); // function with this -> user, and defined first argument;
+var sayToMarek = showFullName.bind(user, 'Pizza jest, '); // function with this -> user, and defined first argument;
 
-getMarek('Pizzy nie ma, ')  // 'Pizza jest, Marek Jazur';
+sayToMarek('Pizzy nie ma, ');  // 'Pizza jest, Marek Jazur';
 ```
 ---
+```
 function login() {
   // magic is here;
   // dziki this!;
@@ -294,7 +293,9 @@ function isAdmin() {
   if (someMagic) return true;
   return false;
 }
+```
 ---
+```
 function login() {
   // magic is here;
   // dziki this!;
@@ -312,7 +313,7 @@ function updatedLogin() {
 
   return false;
 }
-
+```
 ---
 ## Questions
 
