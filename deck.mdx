@@ -84,7 +84,7 @@ function sayHiBye(firstName, lastName) { // first [[Scope]]
   alert( `Dzien Dobry ${getFullName()}`);
   alert( `Do widzenia ${getFullName()}`);
 
-  function getFullName() {  second first [[Scope]]
+  function getFullName() {  second [[Scope]]
     // second LE
     return`${firstName} ${lastName}`;
   }
@@ -103,7 +103,7 @@ function createCounter() {
 
   var currentCount = 0;
 
-  // LexicalEnvironment = { currentCount: 1 }
+  // LexicalEnvironment = { currentCount: 0 }
 
   return function() { // [[Scope]] -> LexicalEnvironment
     return currentCount++;
@@ -251,21 +251,6 @@ var user = {
 var sayToMarek = showFullName.bind(user); // function with this -> user;
 
 sayToMarek('Pizzy nie ma, ') ; // 'Pizzy nie ma, Marek Jazur';
-```
----
-```
-function showFullName(phrase) {
-  return `${phrase} ${this.firstName} ${this.lastName}`;
-}
-
-var user = {
-  firstName: 'Marek',
-  lastName: 'Jazur',
-};
-
-var sayToMarek = showFullName.bind(user); // function with this -> user;
-
-sayToMarek('Pizzy nie ma, ');  // 'Pizzy nie ma, Marek Jazur';
 ```
 ---
 ```
